@@ -9,9 +9,9 @@ services:
     networks:
       - mi-red
     environment:
-      - POSTGRES_USER=${PGUSER}
-      - POSTGRES_PASSWORD=${PGPASSWORD}
-      - POSTGRES_DB=${PGDATABASE}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=vo5uB9viNm8LV27qVz4S
+      - POSTGRES_DB=postgres
   server:
     build:
       context: .
