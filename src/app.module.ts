@@ -15,6 +15,7 @@ import {
 } from 'tv_common/utils/strategies/jwt';
 import { DatabaseModule } from 'tv_common/database/database.module';
 import { ClientModule } from './features/client/client.module';
+import { TechnicianModule } from './features/technician/technician.module';
 
 
 @Module({
@@ -29,6 +30,7 @@ import { ClientModule } from './features/client/client.module';
     },
     DatabaseModule,
     ClientModule,
+    TechnicianModule,
   ],
   controllers: [AppController],
   providers: [
