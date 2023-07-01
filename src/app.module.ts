@@ -14,6 +14,7 @@ import {
   RefreshTokenStrategy,
 } from 'tv_common/utils/strategies/jwt';
 import { DatabaseModule } from 'tv_common/database/database.module';
+import { ClientModule } from './features/client/client.module';
 
 
 @Module({
@@ -27,6 +28,7 @@ import { DatabaseModule } from 'tv_common/database/database.module';
       global: true,
     },
     DatabaseModule,
+    ClientModule,
   ],
   controllers: [AppController],
   providers: [
