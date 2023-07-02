@@ -51,6 +51,16 @@ export class ServiceService {
     return service;
   }
 
+  async findAllBytechnician(technicianId: string) {
+    const technicianFound = await this.technicianRepository.findOneOrFail({ where: { id: technicianId } });
+
+    return await this.serviceRepository.createQueryBuilder('service')
+      .leftJoinAndSelect('service.technician', 'technician')
+      .where('technician.id = :technicianId', { technicianId: technicianFound.id })
+      .getRawMany()
+
+  }
+
   async update(serviceId: string, updateServiceDto: UpdateServiceDto) {
     return await this.serviceRepository.update(serviceId, updateServiceDto);
   }

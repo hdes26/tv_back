@@ -22,7 +22,7 @@ export class ClientController {
   }
 
   @Get(':clientId')
-  @ApiOperation({ summary: 'Listar cliente', description: 'Dado un clientId, se podra lista un cliente.' })
+  @ApiOperation({ summary: 'Listar cliente', description: 'Dado un clientId, se podra listar un cliente.' })
   async findOne(@Param('clientId') clientId: string) {
     return await this.clientService.findOne(clientId);
   }
