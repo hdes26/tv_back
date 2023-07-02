@@ -17,6 +17,7 @@ import { DatabaseModule } from 'tv_common/database/database.module';
 import { ClientModule } from './features/client/client.module';
 import { TechnicianModule } from './features/technician/technician.module';
 import { AuthModule } from './features/auth/auth.module';
+import { ServiceModule } from './features/service/service.module';
 
 
 @Module({
@@ -33,6 +34,7 @@ import { AuthModule } from './features/auth/auth.module';
     ClientModule,
     TechnicianModule,
     AuthModule,
+    ServiceModule,
   ],
   controllers: [AppController],
   providers: [
