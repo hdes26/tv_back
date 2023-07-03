@@ -3,7 +3,6 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { EntityNotFoundError, Repository, UpdateResult } from 'typeorm';
 import { Client, User } from '../../../../tv_common/database/core/entities';
 import { RoleNameEnum } from '../../../../tv_common/database/core/enums/role.enum';
-import { encryptPassword } from '../../../../tv_common/utils/functions';
 import { CreateClientDto } from '../core/dto/create-client.dto';
 import { UpdateClientDto } from '../core/dto/update-client.dto';
 import { ClientService } from '../use-case/client.service';
