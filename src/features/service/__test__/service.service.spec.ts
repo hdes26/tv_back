@@ -2,12 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
 import { Client, Service, Technician } from './../../../../tv_common/database/core/entities/';
-import { CreateServiceDto } from '../core/dto/create-service.dto';
 import { UpdateServiceDto } from '../core/dto/update-service.dto';
 import { InternalServerErrorException } from '@nestjs/common';
 import { TechnicianStatusEnum, ServiceStatusEnum } from './../../../../tv_common/database/core/enums';
 import { ServiceService } from '../use-case/service.service';
-import { NotFoundException } from '@nestjs/common';
 
 
 describe('ServiceService', () => {
