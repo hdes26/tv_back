@@ -2,9 +2,9 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateServiceDto } from '../core/dto/create-service.dto';
 import { UpdateServiceDto } from '../core/dto/update-service.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Client, Service, Technician } from 'tv_common/database/core/entities';
+import { Client, Technician, Service } from './../../../../tv_common/database/core/entities/';
 import { Repository } from 'typeorm';
-import { ServiceStatusEnum, TechnicianStatusEnum } from 'tv_common/database/core/enums';
+import { ServiceStatusEnum, TechnicianStatusEnum } from './../../../../tv_common/database/core/enums/';
 
 @Injectable()
 export class ServiceService {
@@ -52,13 +52,16 @@ export class ServiceService {
   }
 
   async findAllBytechnician(technicianId: string) {
-    const technicianFound = await this.technicianRepository.findOneOrFail({ where: { id: technicianId } });
 
-    return await this.serviceRepository.createQueryBuilder('service')
-      .leftJoinAndSelect('service.technician', 'technician')
-      .where('technician.id = :technicianId', { technicianId: technicianFound.id })
-      .getRawMany()
-
+    const services = await this.serviceRepository.find({
+      relations: ['technician'],
+      where: {
+        technician: {
+          id: technicianId,
+        },
+      },
+    });
+    return services;
   }
 
   async update(serviceId: string, updateServiceDto: UpdateServiceDto) {
@@ -71,6 +74,5 @@ export class ServiceService {
 
   async remove(serviceId: string) {
     return await this.clientRepository.update(serviceId, { deleted_at: new Date(), is_deleted: true });
-
   }
 }

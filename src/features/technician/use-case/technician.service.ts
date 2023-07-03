@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTechnicianDto } from '../core/dto/create-technician.dto';
 import { UpdateTechnicianDto } from '../core/dto/update-technician.dto';
-import { Technician, User } from 'tv_common/database/core/entities';
+import { Technician, User } from './../../../../tv_common/database/core/entities/';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { encryptPassword } from 'tv_common/utils/functions';
-import { RoleNameEnum } from 'tv_common/database/core/enums';
+import { encryptPassword } from './../../../../tv_common/utils/functions';
+import { RoleNameEnum } from './../../../../tv_common/database/core/enums';
 
 @Injectable()
 export class TechnicianService {
@@ -30,45 +30,33 @@ export class TechnicianService {
   }
 
   async findAll() {
-    const query = await this.technicianRepository.createQueryBuilder('technician')
-      .leftJoinAndSelect('technician.user', 'user')
-      .getRawMany()
 
-    return query;
+    const technicians = await this.technicianRepository.find({ relations: ['user'] })
+
+    return technicians;
+
   }
 
   async findOne(technicianId: string) {
-    const query = await this.technicianRepository.createQueryBuilder('technician')
-      .leftJoinAndSelect('technician.user', 'user')
-      .where('technician.id = :technicianId', { technicianId })
-      .getRawOne()
-
-    return query;
+    const technician = await this.technicianRepository.findOneOrFail({ relations: ['user'], where: { id: technicianId } })
+    return technician;
   }
 
   async update(technicianId: string, updateTechnicianDto: UpdateTechnicianDto) {
     if (updateTechnicianDto.password) {
       updateTechnicianDto.password = encryptPassword(updateTechnicianDto.password);
     }
-    const technician = await this.technicianRepository.createQueryBuilder('technician')
-      .leftJoinAndSelect('technician.user', 'user')
-      .select('user')
-      .where('technician.id = :technicianId', { technicianId })
-      .getRawOne();
+    const technician = await this.technicianRepository.findOneOrFail({ relations: ['user'], where: { id: technicianId } });
 
-    return await this.userRepository.update(technician.user_id, updateTechnicianDto);
+    return await this.userRepository.update(technician.user.id, updateTechnicianDto);;
 
   }
 
   async remove(technicianId: string) {
-    const technician = await this.technicianRepository.createQueryBuilder('technician')
-      .leftJoinAndSelect('technician.user', 'user')
-      .where('technician.id = :technicianId', { technicianId })
-      .getRawOne();
+    const technician = await this.technicianRepository.findOneOrFail({ relations: ['user'], where: { id: technicianId } });
 
-    await this.userRepository.update(technician.user_id, { deleted_at: new Date(), is_deleted: true });
+    await this.userRepository.update(technician.user.id, { deleted_at: new Date(), is_deleted: true });
 
-    return await this.technicianRepository.update(technicianId, { deleted_at: new Date(), is_deleted: true });
-
+    return await this.technicianRepository.update(technician.user.id, { deleted_at: new Date(), is_deleted: true });
   }
 }
