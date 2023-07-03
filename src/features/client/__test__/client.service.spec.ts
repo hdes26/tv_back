@@ -38,7 +38,7 @@ describe('ClientService', () => {
     describe('create', () => {
 
         it('should create a client', async () => {
-            const createProjectDto: CreateClientDto = {
+            const createClientDto: CreateClientDto = {
                 email: 'hernan@gmail.com',
                 name: 'Hernan',
                 password: 'hernan123'
@@ -47,13 +47,13 @@ describe('ClientService', () => {
             jest.spyOn(userRepository, 'save').mockResolvedValue({} as User);
             jest.spyOn(clientRepository, 'save').mockResolvedValue({} as Client);
 
-            const result = await clientService.create(createProjectDto);
+            const result = await clientService.create(createClientDto);
 
             expect(userRepository.save).toHaveBeenCalledWith(expect.objectContaining({
                 role: RoleNameEnum.CLIENT,
-                email: createProjectDto.email,
-                name: createProjectDto.name,
-                password: createProjectDto.password,
+                email: createClientDto.email,
+                name: createClientDto.name,
+                password: createClientDto.password,
             }));
             expect(clientRepository.save).toHaveBeenCalledWith(expect.objectContaining({
                 user: {} as User

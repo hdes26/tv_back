@@ -28,9 +28,9 @@ export class ClientService {
   }
 
   async findAll() {
-    const client = await this.clientRepository.find({ relations: ['user'] })
+    const clients = await this.clientRepository.find({ relations: ['user'] })
 
-    return client;
+    return clients;
   }
 
   async findOne(clientId: string) {
@@ -50,7 +50,7 @@ export class ClientService {
   }
 
   async remove(clientId: string) {
-    const client = await this.clientRepository.findOneOrFail({ relations: ['user'], where: { id: clientId } })
+    const client = await this.clientRepository.findOneOrFail({ relations: ['user'], where: { id: clientId } });
 
 
     await this.userRepository.update(client.user.id, { deleted_at: new Date(), is_deleted: true });
