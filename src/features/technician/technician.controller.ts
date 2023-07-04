@@ -18,9 +18,6 @@ export class TechnicianController {
     return await this.technicianService.create(createTechnicianDto);
   }
 
-  @UseGuards(AccessTokenGuard, RolesGuard)
-  @ApiBearerAuth()
-  @Roles(RoleNameEnum.TECHNICIAN)
   @Get()
   @ApiOperation({ summary: 'Listar tecnicos', description: 'Listado de todos los tecnicos.' })
   async findAll() {

@@ -19,7 +19,8 @@ export class AuthService {
 
   private async getTokens(user: User) {
     // Get access token and refresh access token
-    const payload = { id: user.id, role: user.role };
+    const payload = { id: user.id, roles: user.role };
+    
     const [accessToken, refreshToken] = await Promise.all([
       //The access token duration is 12 hours
       this.jwtService.signAsync(payload, {
@@ -42,7 +43,7 @@ export class AuthService {
     // Login in webpage => ADMIN,OPERATOR,SUPPLIER,CLIENT
     const userFound = await this.userRepository.findOne({
       where: { email },
-      select: ['id', 'password'],
+      select: ['id', 'password', 'role'],
     });
     if (!userFound || userFound.is_deleted === true || (userFound && comparePassword(password, userFound.password) === false)) {
       throw new BadRequestException('e-mail or password invalid');
