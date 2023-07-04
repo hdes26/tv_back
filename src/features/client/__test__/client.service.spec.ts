@@ -159,7 +159,7 @@ describe('ClientService', () => {
                 deleted_at: expect.any(Date),
                 is_deleted: true,
             });
-            expect(clientRepository.update).toHaveBeenCalledWith(client.user.id, {
+            expect(clientRepository.update).toHaveBeenCalledWith(clientId, {
                 deleted_at: expect.any(Date),
                 is_deleted: true,
             });
