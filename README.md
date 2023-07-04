@@ -12,13 +12,13 @@ git clone https://github.com/hdes26/tv_back.git
 ### _2. inicialice submodulo_
 
 ```
-submodule init
+git submodule init
 
 ```
 ### _3. clonar submodulo_
 
 ```
-submodule update
+git submodule update
 
 ```
 
