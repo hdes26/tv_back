@@ -16,6 +16,8 @@ RUN npm install
 # Copy the project source code to the container
 COPY . .
 
+RUN chown -R node:node /usr/src/app/tv_common/database/core/migrations
+
 # Run the build script
 RUN npm run build
 
@@ -23,4 +25,4 @@ RUN npm run build
 USER node
 
 # Command to start the application
-CMD [ "node", "dist/src/main.js" ]
+CMD sh -c "npm run migration:generate && npm run migration:up && node dist/src/main.js"
