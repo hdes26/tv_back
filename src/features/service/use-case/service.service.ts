@@ -72,7 +72,7 @@ export class ServiceService {
     return await this.serviceRepository.update(serviceId, { status: ServiceStatusEnum.FINALIZED });
   }
 
-  async remove(serviceId: string) {
-    return await this.clientRepository.update(serviceId, { deleted_at: new Date(), is_deleted: true });
+  async remove(serviceId: string) {    
+    return await this.serviceRepository.update(serviceId, { deleted_at: new Date(), is_deleted: true });
   }
 }

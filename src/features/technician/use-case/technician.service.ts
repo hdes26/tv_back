@@ -57,6 +57,6 @@ export class TechnicianService {
 
     await this.userRepository.update(technician.user.id, { deleted_at: new Date(), is_deleted: true });
 
-    return await this.technicianRepository.update(technician.user.id, { deleted_at: new Date(), is_deleted: true });
+    return await this.technicianRepository.update(technicianId, { deleted_at: new Date(), is_deleted: true });
   }
 }

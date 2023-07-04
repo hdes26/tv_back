@@ -19,7 +19,7 @@ export class AuthService {
 
   private async getTokens(user: User) {
     // Get access token and refresh access token
-    const payload = { id: user.id, roles: user.role };
+    const payload = { id: user.id, roles: user.role };    
     
     const [accessToken, refreshToken] = await Promise.all([
       //The access token duration is 12 hours
@@ -40,7 +40,6 @@ export class AuthService {
   }
 
   async login({ email, password }: LoginDto) {
-    // Login in webpage => ADMIN,OPERATOR,SUPPLIER,CLIENT
     const userFound = await this.userRepository.findOne({
       where: { email },
       select: ['id', 'password', 'role'],

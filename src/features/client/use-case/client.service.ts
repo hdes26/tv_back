@@ -28,7 +28,13 @@ export class ClientService {
   }
 
   async findAll() {
-    const clients = await this.clientRepository.find({ relations: ['user'] })
+    const clients = await this.clientRepository.find({
+      relations: ['user'], where: {
+        user: {
+          is_deleted: false
+        }
+      }
+    })
 
     return clients;
   }
@@ -55,7 +61,7 @@ export class ClientService {
 
     await this.userRepository.update(client.user.id, { deleted_at: new Date(), is_deleted: true });
 
-    return await this.clientRepository.update(client.user.id, { deleted_at: new Date(), is_deleted: true });
+    return await this.clientRepository.update(clientId, { deleted_at: new Date(), is_deleted: true });
 
   }
 }
