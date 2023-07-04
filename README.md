@@ -1,4 +1,4 @@
-# Prueba Tecnica Bonum Hernan Escorcia
+# Prueba Tecnica Imaginamos Hernan Escorcia
 
 
 ## Instalación 🔧
@@ -6,7 +6,7 @@
 ### _1. clone el repositorio_
 
 ```
-git clone https://github.com/hdes26/BONUMTEST-BACK.git
+git clone https://github.com/hdes26/tv_back.git
 ```
 
 ### _2. instale las dependencias_
@@ -29,11 +29,10 @@ docker-compose up
 ```
 
 ## Recursos 🔗
-[Repositorio Github](https://github.com/hdes26/BONUMTEST-BACK) 
+[Repositorio Github](https://github.com/hdes26/tv_back) 
 
 
-[Worspace Postman](https://www.postman.com/lunar-equinox-908337/workspace/test-bonum)
+[Worspace Postman](https://www.postman.com/lunar-equinox-908337/workspace/test-imaginamos)
 
 
-
-[Documentacion Swagger](https://test-bonum.herokuapp.com/api-doc/)
+[Documentacion Swagger](http://localhost:14001/api/v1/imaginamos_tv/docs)
