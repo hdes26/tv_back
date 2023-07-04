@@ -3,9 +3,9 @@ import { ServiceService } from './use-case/service.service';
 import { CreateServiceDto } from './core/dto/create-service.dto';
 import { UpdateServiceDto } from './core/dto/update-service.dto';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { AccessTokenGuard } from 'tv_common/utils/guards/jwt';
-import { Roles, RolesGuard } from 'tv_common/utils/guards/roles';
-import { RoleNameEnum } from 'tv_common/database/core/enums';
+import { AccessTokenGuard } from './../../../tv_common/utils/guards/jwt/accessToken.guard';
+import { Roles, RolesGuard }  from './../../../tv_common/utils/guards/roles';
+import { RoleNameEnum }  from './../../../tv_common/database/core/enums';
 
 @UseGuards(AccessTokenGuard, RolesGuard)
 @ApiBearerAuth()

@@ -3,9 +3,9 @@ import { TechnicianService } from './use-case/technician.service';
 import { CreateTechnicianDto } from './core/dto/create-technician.dto';
 import { UpdateTechnicianDto } from './core/dto/update-technician.dto';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { AccessTokenGuard } from 'tv_common/utils/guards/jwt';
-import { Roles, RolesGuard } from 'tv_common/utils/guards/roles';
-import { RoleNameEnum } from 'tv_common/database/core/enums';
+import { AccessTokenGuard } from './../../../tv_common/utils/guards/jwt/accessToken.guard';
+import { Roles, RolesGuard }  from './../../../tv_common/utils/guards/roles';
+import { RoleNameEnum }  from './../../../tv_common/database/core/enums';
 
 @ApiTags('technician')
 @Controller('technician')

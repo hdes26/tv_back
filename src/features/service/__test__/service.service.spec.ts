@@ -177,13 +177,13 @@ describe('ServiceService', () => {
             const serviceId = 'serviceId';
             const expectedResult = {} as UpdateResult;
 
-            jest.spyOn(clientRepository, 'update').mockResolvedValue(expectedResult);
+            jest.spyOn(serviceRepository, 'update').mockResolvedValue(expectedResult);
 
             // Act
             const result = await serviceService.remove(serviceId);
 
             // Assert
-            expect(clientRepository.update).toHaveBeenCalledWith(serviceId, {
+            expect(serviceRepository.update).toHaveBeenCalledWith(serviceId, {
                 deleted_at: expect.any(Date),
                 is_deleted: true,
             });
