@@ -9,19 +9,26 @@
 git clone https://github.com/hdes26/tv_back.git
 ```
 
-### _2. instale las dependencias_
+### _2. inicialice submodulo_
 
 ```
-npm install
+submodule init
 
 ```
-### _3. configure el .env_
+### _3. clonar submodulo_
+
+```
+submodule update
+
+```
+
+### _4. configure el .env_
 
 ```
 Use de guia el example.env
 
 ```
-### _4. corremos docker_
+### _5. corremos docker_
 
 ```
 docker-compose up
