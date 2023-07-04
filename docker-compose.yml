@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:13
+    restart: always
+    container_name: imaginamosdb.postgres
+    ports:
+      - 5432:5432
+    networks:
+      - mi-red
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=vo5uB9viNm8LV27qVz4S
+      - POSTGRES_DB=postgres
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mi-servidor
+    ports:
+      - 14001:14001
+    env_file:
+      - .env
+    networks:
+      - mi-red
+    depends_on:
+      - postgres
+
+networks:
+  mi-red:
+    driver: bridge

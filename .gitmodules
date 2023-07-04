@@ -1,0 +1,3 @@
+[submodule "tv_common"]
+	path = tv_common
+	url = https://github.com/hdes26/tv_common.git
