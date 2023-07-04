@@ -34,6 +34,12 @@ Use de guia el example.env
 docker-compose up
 
 ```
+## Test unitarios 🍕
+
+```
+npm run test
+
+```
 
 ## Recursos 🔗
 [Repositorio Github](https://github.com/hdes26/tv_back) 
